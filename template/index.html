@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <h1>Counter App</h1>
+    <p id="currentValue">Current Value: {{ current_value }}</p>
+    
+    <button id="incrementBtn">+</button>
+    <button id="decrementBtn">-</button>
+
+    <script>
+        $(document).ready(function(){
+            $("#incrementBtn").click(function(){
+                $.post("/increment", function(data){
+                    $("#currentValue").text("Current Value: " + data);
+                });
+                return false; 
+            });
+
+            $("#decrementBtn").click(function(){
+                $.post("/decrement", function(data){
+                    $("#currentValue").text("Current Value: " + data);
+                });
+                return false; 
+            });
+        });
+    </script>
+</body>
+</html>
